@@ -7,6 +7,10 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+#main {
+  width:100%;
+}
+
 #nav {
   width:10%;
   height:100%;
@@ -17,12 +21,47 @@ body {
   background-color:rgb(188, 188, 188);
 }
 
-.FileManager {
-  position:fixed;
-  left:10%;
+#fileManager{
+  margin:5px;
+  margin-left:11%;
+  height:1000px;
+  border:5px solid black;
+}
+
+.files{
+  display:inline-block;
+  padding:10px;
+  text-align:center;
+}
+
+.captions{
+  margin:0px
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+#openDirectory{
+  background-color:rgb(51,137,255);
+  border:none;
+  color:black;
+  padding:10px;
+  font-size:36px;
+  margin:10px;
+  margin-left:11%;
+  width:200px;
+}
+
+#openDirectory:hover{
+  opacity:90%;
+}
+
+#fileButton:hover{
+  opacity:90%;
+}
+
+#fileButton{
+  background-color:none;
 }
