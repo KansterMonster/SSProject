@@ -12,5 +12,10 @@ Second, clone the repository locally:
 ```
 git clone git@github.com:KansterMonster/SSProject.git
 ```
+Third, download the necessary node modules:
 
-NOTE: 18.2 vs 18.1 react dependency is weird
+```
+npm install mathjs
+npm install @tensorflow-models/universal-sentence-encoder
+npm install @tensorflow/tfjs
+```
