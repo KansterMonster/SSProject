@@ -50,5 +50,6 @@ Currently, the user can click on the blue button titled "Open Directory" to open
 
 # Contributors
 
-Adam Kan wrote `Similarity.js` and `functions.js.`
-Mason Choey wrote `index.js`, `index.css`, `App.js`, `setupTests.test.js`, and `DesktopManager.js`. 
+Adam Kan contributed `Similarity.js` and `functions.js.`
+
+Mason Choey contributed `index.js`, `index.css`, `App.js`, `setupTests.test.js`, and `DesktopManager.js`. 
