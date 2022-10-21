@@ -20,3 +20,4 @@ npm install mathjs
 npm install @tensorflow-models/universal-sentence-encoder
 npm install @tensorflow/tfjs
 ```
+This project uses the File System Access API in React. 
