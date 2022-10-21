@@ -7,27 +7,15 @@
 
   //get phrases (TBD)
   function getPhrases() {
-    let phrases = [
-      'So many apples!',
-      'So many bananas!',
-      'I hate apples',
-      'I hate bananas',
-      'Drug Ed this week',
-      'Hello'
-    ]
+    let phrases = JSON.parse(localStorage.getItem("titles"));
+    console.log("retrieved", phrases);
     return phrases
   }
 
   //get titles (TBD)
   function getTitles() {
-    let phrases = [
-      'So many apples!',
-      'So many bananas!',
-      'I hate apples',
-      'I hate bananas',
-      'Drug Ed this week',
-      'Hello'
-    ]
+    let phrases = JSON.parse(localStorage.getItem("titles"));
+    console.log("retrieved", phrases);
     return phrases
   }
 
@@ -60,13 +48,12 @@
     console.log("Done")
   }
 
-  //get rid of tags
+  //get rid of tags at the end of file names (ie Untitled.js => Untitled)
   function removeTags(titles) {
     let returnList = [];
     for(let i = 0; i < titles.length; i++){
       if(titles[i].includes(".")){
         let tokens = titles[i].split('');
-        console.log(tokens);
         let finalStr = "";
         if(tokens[0] != '.'){
           let reversed = tokens.reverse();

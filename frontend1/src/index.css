@@ -13,7 +13,7 @@ body {
 
 #nav {
   width:10%;
-  height:100%;
+  height:1000px;
   margin:0px;
   padding:0px;
   position:fixed;
@@ -21,9 +21,12 @@ body {
   background-color:rgb(188, 188, 188);
 }
 
+#similarityButtons {
+  margin:10px
+}
+
 #fileManager{
   margin:5px;
-  margin-left:11%;
   height:1000px;
   border:5px solid black;
 }
@@ -50,7 +53,6 @@ code {
   padding:10px;
   font-size:36px;
   margin:10px;
-  margin-left:11%;
   width:200px;
 }
 
