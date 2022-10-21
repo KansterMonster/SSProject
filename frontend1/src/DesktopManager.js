@@ -1,4 +1,4 @@
-//import react and reactDOM to start the react project
+//import react
 import React from 'react';
 //import the icons
 import directoryImage from "./directory.png";
@@ -34,7 +34,6 @@ class DesktopManager extends React.Component {
 
                 // open file picker
                 let fileHandle = await window.showDirectoryPicker({
-                startIn: 'pictures'
                 });
 
                 //listOfValues is an object with the keys being the file name and the definition the file type
@@ -42,6 +41,7 @@ class DesktopManager extends React.Component {
 
                 //semanticValues is a list of file names with extensions (ie Untited.rtf, Document.docx)
                 let semanticValues = []
+                console.log(fileHandle);
                 if (fileHandle.kind === 'directory') {
                 for await (const entry of fileHandle.values()) {
                     if (entry.name !== ".DS_Store"){
