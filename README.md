@@ -38,8 +38,7 @@ Navigate to the "frontend1" folder in terminal. Then, enter the command `npm sta
 
 # Current MVP Features/How the code works
 
-1. Desktop Integration
-Currently, the user can click on the blue button titled "Open Directory" to open. The user then navigates to a file directory that they would like to view. Due to the limitations of the API, the directory cannot be a directory built-in to the computer, as described above. After the user opens a directory, they reload the page. Then, the directory's files and subfolders will be displayed in the window. Clicking on a file will display the most similar files (by name). 
+Currently, the user can click on the blue button titled "Open Directory" to open. The user then navigates to a file directory that they would like to view. Due to the limitations of the API, the directory cannot be a directory built-in to the computer, as described above. After the user opens a directory, they reload the page. Then, the directory's files and subfolders will be displayed in the window. Clicking on a file will display the most similar files (by name)
 
 # Future Features/To-dos (in order)
 
@@ -48,3 +47,8 @@ Currently, the user can click on the blue button titled "Open Directory" to open
 3. Add a to-do list on the left side of the screen, allowing the user to add items, delete items, check off items, or edit items.
 4. Add gmail integration, allowing the user to get a view of their gmail inbox in the same window as their desktop. The gmail should split the screen with the desktop in half, so that the user can see both at once. Additionally, the user requested that they be able to categorize their emails into folders.
 5. Add google drive integration, similar to gmail-integration. 
+
+# Contributors
+
+Adam Kan wrote Similarity.js and functions.js.
+Mason Choey wrote index.js, index.css, README.md, and DesktopManager.js. 
