@@ -27,6 +27,10 @@ npm install @tensorflow/tfjs
 
 This project uses the File System Access API in React. More information on the API here: https://web.dev/file-system-access/.
 
+# Natural Language Processing Resources
+
+This project uses the Univeral Sentence Encoder pretrained model from tensorflow.j. More information on the API here: https://github.com/tensorflow/tfjs-models/tree/master/universal-sentence-encoder.
+
 # How to run 
 
 Navigate to the "frontend1" folder in terminal. Then, enter the command `npm start` to launch the React Web App. Enter `localhost:3000` into a new browser tab in order to view the React Web App.
