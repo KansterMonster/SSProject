@@ -1,6 +1,6 @@
 # SSProject
 
-This project was created for the Nueva Software Studio class fall semester taught by Wes Chao.
+This project was created by Adam Kan and Mason Choey for the Nueva Software Studio class fall semester taught by Wes Chao.
 
 # Set Up
 
