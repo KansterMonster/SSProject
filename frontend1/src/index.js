@@ -5,8 +5,6 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 //import the file that finds similiar files
 import Similarity from './Similarity';
-//import the DesktopManager component
-import DesktopManager from './DesktopManager';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
@@ -22,9 +20,8 @@ class App extends React.Component {
   render(){
     return(
       <div id="main">
-        <div id="nav"></div>
-        <DesktopManager/>
         <Similarity/>
+        {/* <div id="nav"></div> Might add back in the future*/ } 
       </div>
     )
   }

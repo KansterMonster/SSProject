@@ -1,11 +1,14 @@
 // imports
 import React from 'react';
 import {findSim, removeTags, initDots, getTitles, getPhrases, toLocalStorage, fromLocalStorage, redoPhrases, addPhrase} from './functions.js';
+//import the DesktopManager component
+import DesktopManager from './DesktopManager';
+
 require('@tensorflow/tfjs');
 const use = require('@tensorflow-models/universal-sentence-encoder');
 const { dot } = require('mathjs');
 //encoded phrases
-const titlesLoc = 'tixtles';
+const titlesLoc = 'titles';
 const epLoc = 'ep';
 
 // encoded dot products
@@ -28,6 +31,7 @@ class Similarity extends React.Component {
   
   componentDidMount() {
     console.log('Hello from component');
+    this.redoPhrases();
   }
 
   // this is called every time the user asks for similarity
@@ -63,21 +67,26 @@ class Similarity extends React.Component {
   render () {
     return (
       <div>
-        <p>Working!</p>
-        <p>Sorted Indices: {this.state.sortedNums.join(", ")}</p>
-        <p>Document Titles Sorted by Similarity: {this.state.sortedPhrases.join(", ")}</p>
-        <button onClick={this.redoPhrases}>
-          Redo Phrases
-        </button>
-        <button onClick={() => {this.addPhrase('Eat apples or bananas')}}>
-          Add Phrase
-        </button>
-        <button onClick={() => {this.updateSim(0)}}>
-          Find Top 3 Similar
-        </button>
-        <button onClick={() => {console.log(fromLocalStorage(edLoc))}}>
-          Pull Dot Products
-        </button>
+        <div id="similarityButtons">
+          <p>Working!</p>
+          <p>Sorted Indices: {this.state.sortedNums.join(", ")}</p>
+          <p>Document Titles Sorted by Similarity: {this.state.sortedPhrases.join(", ")}</p>
+          <button onClick={this.redoPhrases}>
+            Redo Phrases
+          </button>
+          <button onClick={() => {this.addPhrase('Eat apples or bananas')}}>
+            Add Phrase
+          </button>
+          <button onClick={() => {this.updateSim(0)}}>
+            Find Top 3 Similar
+          </button>
+          <button onClick={() => {console.log(fromLocalStorage(edLoc))}}>
+            Pull Dot Products
+          </button>
+        </div>
+        <DesktopManager
+          updateSim={this.updateSim}
+        />
       </div>
     )
   }
