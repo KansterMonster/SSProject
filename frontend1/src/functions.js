@@ -7,7 +7,7 @@
 
   // pull file content (currently same as titles) from local storage
   function getPhrases() {
-    let phrases = JSON.parse(localStorage.getItem("titles"));
+    let phrases = JSON.parse(localStorage.getItem("phrases"));
     console.log("retrieved", phrases);
     return phrases
   }

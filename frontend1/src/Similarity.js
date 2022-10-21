@@ -69,9 +69,10 @@ class Similarity extends React.Component {
       <div>
         <div id="similarityButtons">
           <p>Working!</p>
-          <p>Sorted Indices: {this.state.sortedNums.join(", ")}</p>
-          <p>Document Titles Sorted by Similarity: {this.state.sortedPhrases.join(", ")}</p>
-          <button onClick={this.redoPhrases}>
+          <p>File Indices Sorted by Similarity: {this.state.sortedNums.join(", ")}</p>
+          <p>File Titles Sorted by Similarity: {this.state.sortedPhrases.join(", ")}</p>
+          {/* UNIT TESTS  */}
+          {/* <button onClick={this.redoPhrases}>
             Redo Phrases
           </button>
           <button onClick={() => {this.addPhrase('Eat apples or bananas')}}>
@@ -82,7 +83,7 @@ class Similarity extends React.Component {
           </button>
           <button onClick={() => {console.log(fromLocalStorage(edLoc))}}>
             Pull Dot Products
-          </button>
+          </button> */}
         </div>
         <DesktopManager
           updateSim={this.updateSim}
