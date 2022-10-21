@@ -130,9 +130,12 @@
     var row = [];
     // reorganize data
     for(let i = 0; i < tempRow.length; i++){
-      let tempArr = [];
-      tempArr.push(tempRow[i], i);
-      row.push(tempArr);
+      // don't include self in list of similar files
+      if(i != index){
+        let tempArr = [];
+        tempArr.push(tempRow[i], i);
+        row.push(tempArr);
+      }
     }
     // sort based on similarity, not index
     row.sort(function(a, b) {
