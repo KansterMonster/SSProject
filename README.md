@@ -1,6 +1,6 @@
 # SSProject
 
-This project was created for the Nueva Software Studio class fall semester taught by Wes Chao.
+This project was created by Adam Kan and Mason Choey for the Nueva Software Studio class fall semester taught by Wes Chao.
 
 # Set Up
 
@@ -50,5 +50,6 @@ Currently, the user can click on the blue button titled "Open Directory" to open
 
 # Contributors
 
-Adam Kan wrote Similarity.js and functions.js.
-Mason Choey wrote index.js, index.css, and DesktopManager.js. 
+Adam Kan contributed `Similarity.js` and `functions.js.`
+
+Mason Choey contributed `index.js`, `index.css`, `App.js`, `setupTests.test.js`, and `DesktopManager.js`. 

@@ -55,11 +55,13 @@ class DesktopManager extends React.Component {
                 
                 //titles is semanticValues list without the file extensions (ie Untitled, Document)
                 const titles = removeTags(semanticValues);
+                const phrases = semanticValues;
                 console.log(JSON.stringify(fileHandle.values()), fileHandle.values(), listOfValues, titles);
 
                 //Sets these items to local storage so it can be accessed by the other react components as well as the smart search algorithm
                 localStorage.setItem("FileHandle", JSON.stringify(listOfValues));
                 localStorage.setItem("titles", JSON.stringify(titles));
+                localStorage.setItem("phrases", JSON.stringify(phrases));
             });
 
         } else{
