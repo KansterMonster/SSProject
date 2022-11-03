@@ -43,6 +43,7 @@
     localStorage.setItem("FileHandle", JSON.stringify(listOfValues));
     localStorage.setItem("titles", JSON.stringify(titles));
     localStorage.setItem("phrases", JSON.stringify(phrases));
+    window.location.reload();
   }
   // pull file titles from local storage
   function getTitles() {

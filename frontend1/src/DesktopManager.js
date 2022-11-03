@@ -62,6 +62,7 @@ class DesktopManager extends React.Component {
                 localStorage.setItem("FileHandle", JSON.stringify(listOfValues));
                 localStorage.setItem("titles", JSON.stringify(titles));
                 localStorage.setItem("phrases", JSON.stringify(phrases));
+                window.location.reload();
             });
 
         } else{
