@@ -3,7 +3,7 @@ import React from 'react';
 //import the icons
 import directoryImage from "./directory.png";
 import fileImage from "./file.png";
-import {removeTags} from "./functions.js";
+import {removeTags, enter_directory, updateDots} from "./functions.js";
 
 //rendered is checking if the react component "desktopManager" is rendered
 let rendered = undefined;
@@ -114,7 +114,7 @@ class DesktopManager extends React.Component {
                 //Parse the info into html form so that it can be displayed to the user (uses a directory image)
                 htmlParsed.push(
                 <li className="files" key={i}>
-                <button id="directoryButton">
+                <button id="directoryButton" onClick={enter_directory}>
                     <img src={directoryImage} height={64} width={64}/>
                 </button>
                 <p className="captions">{fileString}</p>

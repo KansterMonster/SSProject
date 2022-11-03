@@ -1,7 +1,7 @@
 
   require('@tensorflow/tfjs');
   const use = require('@tensorflow-models/universal-sentence-encoder');
-  const { dot } = require('mathjs')
+  const { dot, forEach } = require('mathjs')
   const epLoc = 'ep';
   const edLoc = 'ed';
 
@@ -11,7 +11,39 @@
     console.log("retrieved", phrases);
     return phrases
   }
+  
+  //Enter the sub directory
+  async function enter_directory(){
+    // open file picker
+    let fileHandle = await window.showDirectoryPicker({
+    });
 
+    //listOfValues is an object with the keys being the file name and the definition the file type
+    let listOfValues = {};
+
+    //semanticValues is a list of file names with extensions (ie Untited.rtf, Document.docx)
+    let semanticValues = []
+    console.log(fileHandle);
+    if (fileHandle.kind === 'directory') {
+    for await (const entry of fileHandle.values()) {
+        if (entry.name !== ".DS_Store"){
+        listOfValues[entry.name] = entry.kind;
+        if (entry.kind === "file") {
+            semanticValues.push(entry.name);;
+        }
+        }
+    }
+    }
+    //titles is semanticValues list without the file extensions (ie Untitled, Document)
+    const titles = removeTags(semanticValues);
+    const phrases = semanticValues;
+    console.log(JSON.stringify(fileHandle.values()), fileHandle.values(), listOfValues, titles);
+
+    //Sets these items to local storage so it can be accessed by the other react components as well as the smart search algorithm
+    localStorage.setItem("FileHandle", JSON.stringify(listOfValues));
+    localStorage.setItem("titles", JSON.stringify(titles));
+    localStorage.setItem("phrases", JSON.stringify(phrases));
+  }
   // pull file titles from local storage
   function getTitles() {
     let phrases = JSON.parse(localStorage.getItem("titles"));
@@ -211,4 +243,4 @@
     });
   }
 
-export {findSim, removeTags, getPhrases, getTitles, toLocalStorage, fromLocalStorage, redoPhrases, addPhrase, initDots};
+export {findSim, removeTags, getPhrases, getTitles, toLocalStorage, fromLocalStorage, redoPhrases, addPhrase, initDots, enter_directory, updateDots};
