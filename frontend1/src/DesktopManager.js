@@ -3,7 +3,7 @@ import React from 'react';
 //import the icons
 import directoryImage from "./directory.png";
 import fileImage from "./file.png";
-import {removeTags, enter_directory, updateDots} from "./functions.js";
+import {removeTags, enter_directory, updateDots, navigate_back} from "./functions.js";
 
 //rendered is checking if the react component "desktopManager" is rendered
 let rendered = undefined;
@@ -34,6 +34,7 @@ class DesktopManager extends React.Component {
 
                 // open file picker
                 let fileHandle = await window.showDirectoryPicker({
+                    startIn: 'desktop'
                 });
 
                 //listOfValues is an object with the keys being the file name and the definition the file type
@@ -62,6 +63,15 @@ class DesktopManager extends React.Component {
                 localStorage.setItem("FileHandle", JSON.stringify(listOfValues));
                 localStorage.setItem("titles", JSON.stringify(titles));
                 localStorage.setItem("phrases", JSON.stringify(phrases));
+                let x = []
+                let y = []
+                let z = []
+
+                localStorage.setItem("FileHandleH", x.push(JSON.stringify(listOfValues)));
+                localStorage.setItem("titlesH", y.push(JSON.stringify(titles)));
+                localStorage.setItem("phrasesH", z.push(JSON.stringify(phrases)));
+                
+                localStorage.setItem("currentPos", 0)
                 window.location.reload();
             });
 
@@ -115,7 +125,7 @@ class DesktopManager extends React.Component {
                 //Parse the info into html form so that it can be displayed to the user (uses a directory image)
                 htmlParsed.push(
                 <li className="files" key={i}>
-                <button id="directoryButton" onClick={enter_directory}>
+                <button id="directoryButton" onClick={event => enter_directory(fileString)}>
                     <img src={directoryImage} height={64} width={64}/>
                 </button>
                 <p className="captions">{fileString}</p>
@@ -126,6 +136,7 @@ class DesktopManager extends React.Component {
         return(
         <div>
             <button id="openDirectory">Open Directory</button>
+            <button onClick={event => navigate_back()}>Go Back</button>
             <div id="fileManager">
             <ul>
                 {htmlParsed}

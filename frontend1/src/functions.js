@@ -5,19 +5,20 @@
   const epLoc = 'ep';
   const edLoc = 'ed';
 
+
   // pull file content (currently same as titles) from local storage
   function getPhrases() {
     let phrases = JSON.parse(localStorage.getItem("phrases"));
     console.log("retrieved", phrases);
     return phrases
   }
-  
-  //Enter the sub directory
-  async function enter_directory(){
+  //For when the user clicks on a directory symbol on the frontend
+  async function enter_directory(name){
     // open file picker
+    
     let fileHandle = await window.showDirectoryPicker({
     });
-
+    
     //listOfValues is an object with the keys being the file name and the definition the file type
     let listOfValues = {};
 
@@ -40,10 +41,29 @@
     console.log(JSON.stringify(fileHandle.values()), fileHandle.values(), listOfValues, titles);
 
     //Sets these items to local storage so it can be accessed by the other react components as well as the smart search algorithm
+    localStorage.setItem("FileHandleOld", localStorage.getItem("FileHandle"))
     localStorage.setItem("FileHandle", JSON.stringify(listOfValues));
+    localStorage.setItem("titlesOld", localStorage.getItem("titles"));
     localStorage.setItem("titles", JSON.stringify(titles));
+    localStorage.setItem("phrasesOld", localStorage.getItem("phrases"));
     localStorage.setItem("phrases", JSON.stringify(phrases));
+
+    //Increment the current position forward (will be used for the history array in the future for better navigation)
+    localStorage.setItem("currentPos", localStorage.getItem("currentPos")+1)
+
     window.location.reload();
+  }
+  async function navigate_back(){
+    //Reset to previous values, in the future these should be based on the history array
+    localStorage.setItem("FileHandle", localStorage.getItem("FileHandleOld"))
+    localStorage.setItem("titles", localStorage.getItem("titlesOld"));
+    localStorage.setItem("phrases", localStorage.getItem("phrasesOld"));
+    localStorage.setItem("FileHandleOld", "")
+    localStorage.setItem("titlesOld", "")
+    localStorage.setItem("phrasesOld", "")
+    //Increment the current position backwards (will be used for the history array in the future for better navigation)
+    localStorage.setItem("currentPos", localStorage.getItem("currentPos")-1)
+    window.location.reload()
   }
   // pull file titles from local storage
   function getTitles() {
@@ -244,4 +264,4 @@
     });
   }
 
-export {findSim, removeTags, getPhrases, getTitles, toLocalStorage, fromLocalStorage, redoPhrases, addPhrase, initDots, enter_directory, updateDots};
+export {navigate_back,findSim, removeTags, getPhrases, getTitles, toLocalStorage, fromLocalStorage, redoPhrases, addPhrase, initDots, enter_directory, updateDots};
