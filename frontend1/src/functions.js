@@ -55,14 +55,31 @@
   }
   async function navigate_back(){
     //Reset to previous values, in the future these should be based on the history array
-    localStorage.setItem("FileHandle", localStorage.getItem("FileHandleOld"))
-    localStorage.setItem("titles", localStorage.getItem("titlesOld"));
-    localStorage.setItem("phrases", localStorage.getItem("phrasesOld"));
-    localStorage.setItem("FileHandleOld", "")
-    localStorage.setItem("titlesOld", "")
-    localStorage.setItem("phrasesOld", "")
-    //Increment the current position backwards (will be used for the history array in the future for better navigation)
-    localStorage.setItem("currentPos", localStorage.getItem("currentPos")-1)
+    if (localStorage.getItem("FileHandleOld") != "" && localStorage.getItem("FileHandleOld") != undefined){
+      localStorage.setItem("FileHandle", localStorage.getItem("FileHandleOld"))
+      localStorage.setItem("titles", localStorage.getItem("titlesOld"));
+      localStorage.setItem("phrases", localStorage.getItem("phrasesOld"));
+      localStorage.setItem("FileHandleOld", "")
+      localStorage.setItem("titlesOld", "")
+      localStorage.setItem("phrasesOld", "")
+      //Increment the current position backwards (will be used for the history array in the future for better navigation)
+      localStorage.setItem("currentPos", localStorage.getItem("currentPos")-1)
+      window.location.reload()
+    }
+    else{
+      alert("As of now you can only navigate back to the previous directory, in the future it will save a full history")
+    }
+    
+  }
+  //Return to initial directory
+  function return_to_parent(){
+    localStorage.setItem("FileHandle", localStorage.getItem("FileHandleParent"))
+    localStorage.setItem("titles", localStorage.getItem("titlesParent"));
+    localStorage.setItem("phrases", localStorage.getItem("phrasesParent"));
+    window.location.reload()
+  }
+  function clear_local_storage(){
+    localStorage.clear();
     window.location.reload()
   }
   // pull file titles from local storage
@@ -264,4 +281,4 @@
     });
   }
 
-export {navigate_back,findSim, removeTags, getPhrases, getTitles, toLocalStorage, fromLocalStorage, redoPhrases, addPhrase, initDots, enter_directory, updateDots};
+export {return_to_parent, clear_local_storage, navigate_back,findSim, removeTags, getPhrases, getTitles, toLocalStorage, fromLocalStorage, redoPhrases, addPhrase, initDots, enter_directory, updateDots};
