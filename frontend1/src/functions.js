@@ -56,35 +56,13 @@
 
   //get rid of tags at the ends of file names
   // EXAMPLE: "this.jpg" -> "this", "this.document.pdf" -> "this.document"
-  function removeTags(titles) {
-    let returnList = [];
-    for(let i = 0; i < titles.length; i++){
-      if(titles[i].includes(".")){
-        let tokens = titles[i].split('');
-        let finalStr = "";
-        // if the string begins with a period, then it is something like ".DS_Store", and can be ignored
-        if(tokens[0] != '.'){
-          // reverse the string to get rid of all characters after the last '.'
-          let reversed = tokens.reverse();
-          finalStr = '';
-          let start = false;
-          for (let j = 0; j < reversed.length; j++) {
-            if(start){
-              finalStr = finalStr+reversed[j];
-            }
-            if(reversed[j] == '.'){
-              start = true;
-            }
-          }
-          // re-reverse to get the original string order back
-          tokens = finalStr.split('');
-          tokens = tokens.reverse();
-        }
-        finalStr = tokens.join('');
-        returnList.push(finalStr);
-      }
-    }
-    return(returnList);
+  function removeTag(title) {
+    if (!title.includes(".")) return title;
+  
+    let tokens = title.split('.');
+    tokens.pop();
+
+    return tokens.join('.');
   }
 
   // add one row to the similarity array
@@ -127,16 +105,24 @@
     var dots = fromLocalStorage(edLoc);
     // janky deepcopy
     var tempRow = JSON.parse(JSON.stringify(dots[index]));
+    console.log("temprow")
+    console.log(tempRow);
     var row = [];
+
+
     // reorganize data
     for(let i = 0; i < tempRow.length; i++){
       // don't include self in list of similar files
-      if(i != index){
+      if(i == index) continue;
+        console.log(i, index)
+
         let tempArr = [];
         tempArr.push(tempRow[i], i);
         row.push(tempArr);
-      }
+
     }
+
+    console.log(row);
     // sort based on similarity, not index
     row.sort(function(a, b) {
       return a[0] - b[0];
@@ -211,4 +197,4 @@
     });
   }
 
-export {findSim, removeTags, getPhrases, getTitles, toLocalStorage, fromLocalStorage, redoPhrases, addPhrase, initDots};
+export {findSim, removeTag, getPhrases, getTitles, toLocalStorage, fromLocalStorage, redoPhrases, addPhrase, initDots};

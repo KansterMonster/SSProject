@@ -1,6 +1,6 @@
 // imports
 import React from 'react';
-import {findSim, removeTags, initDots, getTitles, getPhrases, toLocalStorage, fromLocalStorage, redoPhrases, addPhrase} from './functions.js';
+import {findSim, initDots, getTitles, getPhrases, toLocalStorage, fromLocalStorage, redoPhrases, addPhrase} from './functions.js';
 //import the DesktopManager component
 import DesktopManager from './DesktopManager';
 
@@ -26,7 +26,6 @@ class Similarity extends React.Component {
     this.updateSim = this.updateSim.bind(this);
     this.redoPhrases = this.redoPhrases.bind(this);
     let badTitles = ["hello.png", "my.space", "face.pdf", ".asdkjfh"]
-    console.log(removeTags(badTitles));
   }
   
   componentDidMount() {
@@ -36,16 +35,12 @@ class Similarity extends React.Component {
 
   // this is called every time the user asks for similarity
   updateSim(index) {
+    console.log("%cThis function has been called", "color: red;");
+    console.log(`index: ${index}`);
     var tempSorted = findSim(index)
-    var tempSorted2 = [];
-    for(let i = 0; i < tempSorted.length; i++){
-      tempSorted2.push(tempSorted[i][1]);
-    }
-    var tempSortedPhrases = [];
-    for(let i = 0; i < tempSorted2.length; i++){
-      console.log(tempSorted2[i]);
-      tempSortedPhrases.push(this.phrases[tempSorted2[i]]);
-    }
+    var tempSorted2 = tempSorted.map(value => value[1]);
+    var tempSortedPhrases = tempSorted2.map(value => this.phrases[value]);
+
     this.setState({
       sortedNums: tempSorted2,
       sortedPhrases: tempSortedPhrases
