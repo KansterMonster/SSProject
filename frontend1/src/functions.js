@@ -15,7 +15,6 @@
   //For when the user clicks on a directory symbol on the frontend
   async function enter_directory(name){
     // open file picker
-    
     let fileHandle = await window.showDirectoryPicker({
     });
     

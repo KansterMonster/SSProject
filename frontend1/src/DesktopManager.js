@@ -63,14 +63,11 @@ class DesktopManager extends React.Component {
                 localStorage.setItem("FileHandle", JSON.stringify(listOfValues));
                 localStorage.setItem("titles", JSON.stringify(titles));
                 localStorage.setItem("phrases", JSON.stringify(phrases));
-                let x = []
-                let y = []
-                let z = []
-
+                //Set default directory
                 localStorage.setItem("FileHandleParent", JSON.stringify(listOfValues));
                 localStorage.setItem("titlesParent", JSON.stringify(titles));
                 localStorage.setItem("phrasesParent", JSON.stringify(phrases));
-                
+                //For later navigation
                 localStorage.setItem("currentPos", 0)
                 window.location.reload();
             });
@@ -145,7 +142,9 @@ class DesktopManager extends React.Component {
             <ul>
                 {htmlParsed}
             </ul>
+            
             </div>
+            
         </div>
         )
   }
