@@ -27,14 +27,17 @@ body {
 
 #fileManager{
   margin:5px;
-  height:1000px;
-  border:5px solid black;
+  border:3px solid black;
+  border-radius: 5px;
+  width: 60%;
 }
 
 .files{
   display:inline-block;
   padding:10px;
+  
   text-align:center;
+
 }
 
 .captions{
@@ -49,19 +52,41 @@ code {
 #openDirectory{
   background-color:rgb(51,137,255);
   border:none;
-  color:black;
+  color:white;
   padding:10px;
   font-size:36px;
   margin:10px;
   width:200px;
+  border-radius: 5px;
+}
+#back{
+  background-color:rgb(0, 0, 0);
+  border:none;
+  color:white;
+  padding:10px;
+  font-size:36px;
+  margin:10px;
+  width:200px;
+  border-radius: 5px;
 }
 
 #openDirectory:hover{
   opacity:90%;
+  cursor: pointer;
+}
+#back:hover{
+  opacity:90%;
+  cursor: pointer;
 }
 
 #fileButton:hover{
   opacity:90%;
+  
+}
+#directoryButton:hover{
+  opacity:90%;
+  cursor: pointer;
+  
 }
 
 #fileButton{

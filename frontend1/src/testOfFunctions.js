@@ -1,5 +1,4 @@
-
-  require('@tensorflow/tfjs');
+require('@tensorflow/tfjs');
   const use = require('@tensorflow-models/universal-sentence-encoder');
   const { dot, forEach } = require('mathjs')
   const epLoc = 'ep';
@@ -280,4 +279,41 @@
     });
   }
 
-export {return_to_parent, clear_local_storage, navigate_back,findSim, removeTags, getPhrases, getTitles, toLocalStorage, fromLocalStorage, redoPhrases, addPhrase, initDots, enter_directory, updateDots};
+//BEGINING OF UNIT TESTS
+
+//Randomly Generate Name
+function makeName(len, type) {
+    let name = '';
+    let extensions_list = [".txt", ".pdf", ".csv", ".html", ".js", ".css", ".py"]
+    let extension = extensions_list[Math.floor(Math.random() * extensions_list.length)]
+    let chars = '0123456789abcdefghijklmnopqrstuvwxyz!@#$%^&*()_+';
+    for (let i = 0; i < len; i++ ) {
+        name += chars.charAt(Math.floor(Math.random() * chars.length));
+    }
+    if (type == "file"){
+        return name+extension;
+    }
+    if (type == "directory"){
+        return name+extension;
+    }
+    
+}
+//Randomly generate a test directory with difffernt sub-directories and files
+function makeRandomDirectory(size){
+    let fileHandle = []
+    let kind = "none"
+    for(let i = 0; i<size; i++){
+        if(Math.random()>0.5){
+            kind = "file"
+            name = makeName(10, "file")
+            fileHandle.push({"kind":kind, "name":name})
+        }
+        else{
+            kind = "directory"
+            name = makeName(10, "directory")
+            fileHandle.push({"kind":kind, "name":name})
+        }
+    }
+    return fileHandle
+}
+console.log(makeRandomDirectory(100))
