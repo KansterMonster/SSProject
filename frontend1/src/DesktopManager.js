@@ -3,7 +3,7 @@ import React from 'react';
 //import the icons
 import directoryImage from "./directory.png";
 import fileImage from "./file.png";
-import {removeTags} from "./functions.js";
+import {return_to_parent, removeTags, enter_directory, updateDots, navigate_back, clear_local_storage} from "./functions.js";
 
 //rendered is checking if the react component "desktopManager" is rendered
 let rendered = undefined;
@@ -34,6 +34,7 @@ class DesktopManager extends React.Component {
 
                 // open file picker
                 let fileHandle = await window.showDirectoryPicker({
+                    startIn: 'desktop'
                 });
 
                 //listOfValues is an object with the keys being the file name and the definition the file type
@@ -62,6 +63,13 @@ class DesktopManager extends React.Component {
                 localStorage.setItem("FileHandle", JSON.stringify(listOfValues));
                 localStorage.setItem("titles", JSON.stringify(titles));
                 localStorage.setItem("phrases", JSON.stringify(phrases));
+                //Set default directory
+                localStorage.setItem("FileHandleParent", JSON.stringify(listOfValues));
+                localStorage.setItem("titlesParent", JSON.stringify(titles));
+                localStorage.setItem("phrasesParent", JSON.stringify(phrases));
+                //For later navigation
+                localStorage.setItem("currentPos", 0)
+                window.location.reload();
             });
 
         } else{
@@ -75,6 +83,7 @@ class DesktopManager extends React.Component {
     }
 
     render(){
+        
         this.waitForElement();
         //once the element is defined, get the dictionary "listOfValues" from localstorage
         files = JSON.parse(this.state.DesktopFiles);
@@ -102,6 +111,7 @@ class DesktopManager extends React.Component {
                 // console.log(this.props.updateSim(filesNoDirectories.indexOf(file)));
                 //Parse the info into html form so that it can be displayed to the user (uses a file image)
                 htmlParsed.push(
+                
                 <li className="files" key={i}>
                     <button id="fileButton" onClick={this.props.updateSim.bind(this, filesNoDirectories.indexOf(file))}>
                         <img src={fileImage} height={64} width={64}/>
@@ -114,7 +124,7 @@ class DesktopManager extends React.Component {
                 //Parse the info into html form so that it can be displayed to the user (uses a directory image)
                 htmlParsed.push(
                 <li className="files" key={i}>
-                <button id="directoryButton">
+                <button id="directoryButton" onClick={event => enter_directory(fileString)}>
                     <img src={directoryImage} height={64} width={64}/>
                 </button>
                 <p className="captions">{fileString}</p>
@@ -125,11 +135,16 @@ class DesktopManager extends React.Component {
         return(
         <div>
             <button id="openDirectory">Open Directory</button>
+            <button id="openDirectory" onClick={event => clear_local_storage()}>Clear all Files</button>
+            <button id="back" onClick={event => navigate_back()}>Navigate Back</button>
+            <button id="back" onClick={event => return_to_parent()}>Parent Directory</button>
             <div id="fileManager">
             <ul>
                 {htmlParsed}
             </ul>
+            
             </div>
+            
         </div>
         )
   }

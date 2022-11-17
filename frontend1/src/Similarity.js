@@ -51,6 +51,22 @@ class Similarity extends React.Component {
       sortedPhrases: tempSortedPhrases
     });
   }
+  updateSimTop3(index) {
+    var tempSorted = findSim(index)
+    var tempSorted2 = [];
+    for(let i = 0; i < 3; i++){
+      tempSorted2.push(tempSorted[i][1]);
+    }
+    var tempSortedPhrases = [];
+    for(let i = 0; i < 3; i++){
+      console.log(tempSorted2[i]);
+      tempSortedPhrases.push(this.phrases[tempSorted2[i]]);
+    }
+    this.setState({
+      sortedNums: tempSorted2,
+      sortedPhrases: tempSortedPhrases
+    });
+  }
 
   redoPhrases() {
     redoPhrases();
@@ -72,18 +88,21 @@ class Similarity extends React.Component {
           <p>File Indices Sorted by Similarity: {this.state.sortedNums.join(", ")}</p>
           <p>File Titles Sorted by Similarity: {this.state.sortedPhrases.join(", ")}</p>
           {/* UNIT TESTS  */}
-          {/* <button onClick={this.redoPhrases}>
+          Tests:
+          <br></br>
+          <button onClick={this.redoPhrases}>
             Redo Phrases
           </button>
-          <button onClick={() => {this.addPhrase('Eat apples or bananas')}}>
+          <button onClick={() => {this.addPhrase(window.prompt("Add additional phrase for testing"))}}>
             Add Phrase
           </button>
-          <button onClick={() => {this.updateSim(0)}}>
+          <button onClick={() => {this.updateSimTop3(0)}}>
             Find Top 3 Similar
           </button>
           <button onClick={() => {console.log(fromLocalStorage(edLoc))}}>
             Pull Dot Products
-          </button> */}
+          </button> 
+          {/*UNIT TESTS*/}
         </div>
         <DesktopManager
           updateSim={this.updateSim}
