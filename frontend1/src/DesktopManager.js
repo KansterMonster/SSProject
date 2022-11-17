@@ -45,24 +45,30 @@ class DesktopManager extends React.Component {
             let semanticValues = []
 
             for await (const file of directoryHandle.values()) {
+
                 if (file.name[0] == ".") continue;
-                console.log(file.name);
+
                 listOfValues[file.name] = file.kind;
 
                 if(file.name.indexOf(".txt") == file.name.length - 4 || file.name.indexOf(".text") == file.length - 5) {
                     const textfile = await file.getFile();
                     const text = await textfile.text();
                     semanticValues.push(text.replace(".", ""));
+                    continue;
                 } 
                 
                 semanticValues.push(file.name);
-                const titles = semanticValues.map(value => removeTag(value))
-
-                localStorage.setItem("FileHandle", JSON.stringify(listOfValues));
-                localStorage.setItem("titles", JSON.stringify(titles));
-                localStorage.setItem("phrases", JSON.stringify(semanticValues)); //semantic values are phrases
                 
             }
+
+            console.log(semanticValues);
+
+            const titles = semanticValues.map(value => removeTag(value))
+            console.log(titles)
+
+            localStorage.setItem("FileHandle", JSON.stringify(listOfValues));
+            localStorage.setItem("titles", JSON.stringify(titles));
+            localStorage.setItem("phrases", JSON.stringify(semanticValues)); //semantic values are phrases
 
     }
 

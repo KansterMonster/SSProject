@@ -101,7 +101,7 @@
 
   // find and return sorted files by similarity to a specific file
   function findSim(index) {
-    console.log("Finding Similar...")
+    console.log("%cFinding Similar...", "color: green");
     var dots = fromLocalStorage(edLoc);
     // janky deepcopy
     var tempRow = JSON.parse(JSON.stringify(dots[index]));
@@ -116,15 +116,13 @@
       if(i == index) continue;
         console.log(i, index)
 
-        let tempArr = [];
-        tempArr.push(tempRow[i], i);
-        row.push(tempArr);
+        row.push([tempRow[i], i]);
 
     }
 
     console.log(row);
     // sort based on similarity, not index
-    row.sort(function(a, b) {
+    row.sort((a, b) => {
       return a[0] - b[0];
     })
     row.reverse();
